@@ -1,12 +1,15 @@
-module.exports = function (io) {
+var Chat = function (io) {
     'use strict';
+
     io.on('connection', function (socket) {
         socket.broadcast.emit('user connected');
 
+        socket.on('new-user', function (userName) {
+            ChatServer.users.push(userName);
+        });
+
         socket.on('message', function (from, msg) {
-
             console.log('recieved message from', from, 'msg', JSON.stringify(msg));
-
             console.log('broadcasting message');
             console.log('payload is', msg);
             io.sockets.emit('broadcast', {
@@ -16,4 +19,10 @@ module.exports = function (io) {
             console.log('broadcast complete');
         });
     });
+
+    return ({
+        users: []
+    });
 };
+
+module.exports = Chat;

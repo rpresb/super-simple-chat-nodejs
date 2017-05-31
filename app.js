@@ -10,11 +10,10 @@ var express = require('express'),
     path = require('path'),
     bodyParser = require('body-parser');
 
-// set up our socket server
-require('./sockets/base')(io);
+// set up our chat server
+require('./sockets/chat')(io);
 
 server.listen(process.env.CHAT_PORT || 5000);
-
 
 app.set('view engine', 'jade');
 
