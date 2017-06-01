@@ -7,5 +7,4 @@ var chatApp = angular.module('chatApp', [
   'btford.socket-io'
 ]);
 
-chatApp.value('nickName', 'anonymous')
 chatApp.value('socketaddr', 'http://localhost:5000');

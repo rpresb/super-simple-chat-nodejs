@@ -23,27 +23,51 @@
 </head>
 
 <body ng-app="chatApp">
-    <h1>Super Simple Chat</h1>
+    <div class="jumbotron">
+        <h1>Super Simple Chat</h1>
+        <p>This is a
+            <s>very</s> super simple chat.</p>
+    </div>
 
     <div class='container'>
         <div ng-controller='SocketCtrl'>
-            You are known as: <span ng-bind="nickName"></span>.<br/>Change your nickname with <code>/nick [yourNewNick]</code>
-            <div class='row'>
-                <div class='col-md-9'>
-                    <chat-box></chat-box>
-                </div>
-            </div>
-            <div class='row'>
-                &nbsp;
-            </div>
-            <div class='row'>
-                <div class='col-md-8'>
-                    <form role='form' novalidate name='form'>
-                        <div class='form-group'>
-                            <input type='text' style='width: 80%' required ng-max='50' ng-model='message' focus>
-                            <button class='btn btn-sm btn-primary' ng-enable='form.$valid' ng-click="sendMessage(message)">Send!</button>
+            <div data-ng-show="errorMessage" class="alert alert-danger" role="alert" data-ng-bind="errorMessage"></div>
+            <div data-ng-hide="connected">
+                <form role='form' novalidate name='loginForm'>
+                    <div class='form-group'>
+                        <div class="input-group">
+                            <span class="input-group-addon" id="basic-addon1">Enter your nickname</span>
+                            <input type="text" class="form-control" placeholder="Nickname" ng-model='nickName' focus />
+                            <span class="input-group-btn">
+                                <button class='btn btn-primary' ng-enable='form.$valid' ng-click="connect()">Connect</button>
+                            </span>
                         </div>
-                    </form>
+                    </div>
+                </form>
+            </div>
+            <div data-ng-show="connected">
+                Welcome <span ng-bind="nickName"></span>!
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <chat-box></chat-box>
+                    </div>
+                </div>
+                <div class='row'>
+                    &nbsp;
+                </div>
+                <div class='row'>
+                    <div class='col-md-12'>
+                        <form role='form' novalidate name='form'>
+                            <div class='form-group'>
+                                <div class="input-group">
+                                    <input type='text' class="form-control" required ng-max='50' ng-model='message' focus>
+                                    <span class="input-group-btn">
+                                        <button class='btn btn-primary' ng-enable='form.$valid' ng-click="sendMessage(message)">Send!</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
