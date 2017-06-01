@@ -17,8 +17,16 @@ cd super-simple-chat-nodejs
 Install the npm packages
 ```
 npm install mocha -g
+npm install bower -g
 npm install
 ```
+
+Install frontend dependencies
+```
+cd frontend
+bower install
+cd ..
+``` 
 
 Start the server
 ```
