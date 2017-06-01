@@ -26,7 +26,9 @@ Install frontend dependencies
 cd frontend
 bower install
 cd ..
-``` 
+```
+
+NOTE: If you are trying this through your network, edit the */frontend/app/scripts/app.js* file and change the *localhost* to your local IP address.
 
 Start the server
 ```
